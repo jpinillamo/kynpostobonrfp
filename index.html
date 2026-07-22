@@ -212,12 +212,15 @@ details.fr .tools{margin-top:12px;display:flex;flex-wrap:wrap;gap:6px}
 #login input:focus{border-color:var(--red)}
 #login .pwrap{position:relative}
 #login .pwrap input{padding-right:44px}
+#login input::-ms-reveal,#login input::-ms-clear{display:none}
 #login .eye{position:absolute;right:6px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;padding:7px;color:var(--grey-lt);display:flex;align-items:center;border-radius:5px;transition:.15s}
 #login .eye:hover{color:var(--red)}
 #login .go{width:100%;margin-top:24px;background:var(--red);color:#fff;border:none;border-radius:6px;padding:13px;font-family:var(--disp);font-weight:600;font-size:15px;cursor:pointer;transition:.15s;display:flex;align-items:center;justify-content:center;gap:8px}
 #login .go:hover{background:var(--red-dark)}
 #login .err{display:none;margin-top:14px;background:var(--red-tint);border:1px solid var(--red);color:var(--red-dark);border-radius:6px;padding:9px 13px;font-size:12.5px;align-items:center;gap:8px}
 #login .hint{margin-top:20px;font-size:11.5px;color:var(--grey-lt);text-align:center;font-family:var(--mono)}
+#login .err{flex-wrap:wrap}
+#login .err small{display:block;width:100%;margin-top:4px;font-family:var(--mono);font-size:10.5px;color:var(--red-dark);opacity:.8;word-break:break-all}
 .logout{margin-left:16px;background:none;border:1px solid #3A3A3A;color:#CFCFCF;border-radius:100px;padding:6px 14px;font-family:var(--sans);font-size:12px;cursor:pointer;display:flex;align-items:center;gap:6px;transition:.15s}
 .logout:hover{border-color:var(--red);color:#fff}
 
@@ -292,7 +295,7 @@ details.fr .tools{margin-top:12px;display:flex;flex-wrap:wrap;gap:6px}
       </button>
     </div>
     <button class="go" onclick="tryLogin()">Entrar <svg class="ic sm"><use href="#i-arrow"/></svg></button>
-    <div class="err" id="lerr"><svg class="ic sm"><use href="#i-alert"/></svg>Usuario o contraseña incorrectos.</div>
+    <div class="err" id="lerr"><svg class="ic sm"><use href="#i-alert"/></svg><span>Usuario o contraseña incorrectos.</span><small></small></div>
     <div class="hint">Acceso restringido · Kyndryl × Postobón</div>
   </div>
 </div>
@@ -313,12 +316,26 @@ async function deriveKey(u,p){
   var km=await crypto.subtle.importKey('raw',new TextEncoder().encode(u+'|'+p),'PBKDF2',false,['deriveKey']);
   return crypto.subtle.deriveKey({name:'PBKDF2',salt:ub64(ENC.salt),iterations:150000,hash:'SHA-256'},km,{name:'AES-GCM',length:256},false,['decrypt']);
 }
+function showErr(msg,detail){
+  var e=document.getElementById('lerr');
+  e.style.display='flex';
+  e.querySelector('span').textContent=msg;
+  e.querySelector('small').textContent=detail||'';
+}
 async function tryLogin(){
   var u=document.getElementById('lu').value.trim().toLowerCase();
   var p=document.getElementById('lp').value;
   var btn=document.querySelector('#login .go');
   btn.disabled=true;btn.style.opacity=.6;
   try{
+    if(!window.crypto||!window.crypto.subtle){
+      showErr('Este navegador/URL no soporta cifrado. Abre la p\u00e1gina por HTTPS (no http:// ni vista raw).');
+      return;
+    }
+    if(!ENC.data||ENC.data.length<1000){
+      showErr('El archivo est\u00e1 incompleto o se corrompi\u00f3 al subirlo. Vuelve a subir el HTML original sin editarlo.');
+      return;
+    }
     var key=await deriveKey(u,p);
     var pt=await crypto.subtle.decrypt({name:'AES-GCM',iv:ub64(ENC.iv)},key,ub64(ENC.data));
     document.getElementById('app').innerHTML=new TextDecoder().decode(pt);
@@ -326,11 +343,19 @@ async function tryLogin(){
     document.getElementById('lp').value='';
     bindApp();
   }catch(e){
-    document.getElementById('lerr').style.display='flex';
+    console.error('[login] '+e.name+': '+e.message);
+    if(e.name==='OperationError'){
+      showErr('Usuario o contrase\u00f1a incorrectos.');
+    }else if(e.name==='InvalidCharacterError'){
+      showErr('Los datos cifrados se da\u00f1aron al subir el archivo. Sube el HTML original de nuevo.',e.name+': '+e.message);
+    }else{
+      showErr('Error t\u00e9cnico en este navegador:',e.name+': '+e.message+' \u00b7 URL: '+location.protocol+'//'+location.host);
+    }
     document.getElementById('lp').value='';
     document.getElementById('lp').focus();
+  }finally{
+    btn.disabled=false;btn.style.opacity=1;
   }
-  btn.disabled=false;btn.style.opacity=1;
 }
 function goTo(id){
   document.querySelectorAll('.page').forEach(function(p){p.classList.toggle('active',p.id===id)});
@@ -357,6 +382,15 @@ function togglePw(){
   document.querySelector('#eyeic use').setAttribute('href',show?'#i-eyeoff':'#i-eye');
   i.focus();
 }
+(function(){
+  var proto=location.protocol;
+  if(!window.crypto||!window.crypto.subtle){
+    var motivo = (proto!=='https:'&&proto!=='file:')
+      ? 'La p\u00e1gina se abri\u00f3 por '+proto+'// y este navegador solo permite cifrado en HTTPS.'
+      : 'Este navegador no soporta la API de cifrado (Web Crypto).';
+    showErr('El login no puede funcionar aqu\u00ed. '+motivo,'crypto.subtle no disponible \u00b7 '+proto+'//'+location.host+' \u00b7 '+navigator.userAgent.slice(0,60));
+  }
+})();
 document.getElementById('lp').addEventListener('keydown',function(e){if(e.key==='Enter')tryLogin()});
 document.getElementById('lu').addEventListener('keydown',function(e){if(e.key==='Enter')document.getElementById('lp').focus()});
 </script>
