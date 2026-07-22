@@ -178,7 +178,7 @@ details.fr .tools{margin-top:12px;display:flex;flex-wrap:wrap;gap:6px}
 .res p{font-size:13px;color:var(--grey);font-weight:300}
 .sig-card{margin-top:40px;border:1px solid var(--line);border-radius:10px;padding:28px;display:flex;justify-content:space-between;gap:30px;flex-wrap:wrap;background:var(--bg-2)}
 .sig-card .person{display:flex;gap:16px;align-items:center}
-.sig-card .icbox{background:var(--teal-tint);color:var(--teal)}
+.sig-card .icbox{background:var(--teal-tint);color:var(--teal);display:flex;align-items:center;justify-content:center}
 .sig-card b{display:block;font-size:16.5px;color:var(--black);font-family:var(--disp)}
 .sig-card span{font-size:13px;color:var(--grey);display:block}
 .sig-card a{color:var(--red);font-size:13px;font-weight:500}
@@ -210,6 +210,10 @@ details.fr .tools{margin-top:12px;display:flex;flex-wrap:wrap;gap:6px}
 #login label{display:block;font-size:12.5px;font-weight:600;color:var(--black);margin:14px 0 6px;font-family:var(--disp)}
 #login input{width:100%;border:1.5px solid var(--line);border-radius:6px;padding:11px 14px;font-family:var(--sans);font-size:14.5px;outline:none;transition:.15s}
 #login input:focus{border-color:var(--red)}
+#login .pwrap{position:relative}
+#login .pwrap input{padding-right:44px}
+#login .eye{position:absolute;right:6px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;padding:7px;color:var(--grey-lt);display:flex;align-items:center;border-radius:5px;transition:.15s}
+#login .eye:hover{color:var(--red)}
 #login .go{width:100%;margin-top:24px;background:var(--red);color:#fff;border:none;border-radius:6px;padding:13px;font-family:var(--disp);font-weight:600;font-size:15px;cursor:pointer;transition:.15s;display:flex;align-items:center;justify-content:center;gap:8px}
 #login .go:hover{background:var(--red-dark)}
 #login .err{display:none;margin-top:14px;background:var(--red-tint);border:1px solid var(--red);color:var(--red-dark);border-radius:6px;padding:9px 13px;font-size:12.5px;align-items:center;gap:8px}
@@ -265,6 +269,8 @@ details.fr .tools{margin-top:12px;display:flex;flex-wrap:wrap;gap:6px}
 <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
 <symbol id="i-arrowl" viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></symbol>
 <symbol id="i-chev" viewBox="0 0 24 24"><path d="m9 6 6 6-6 6"/></symbol>
+<symbol id="i-eye" viewBox="0 0 24 24"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></symbol>
+<symbol id="i-eyeoff" viewBox="0 0 24 24"><path d="M10.6 5.1A10.9 10.9 0 0 1 12 5c6.5 0 10 7 10 7a17.6 17.6 0 0 1-2.2 3.1M6.6 6.6C3.7 8.5 2 12 2 12s3.5 7 10 7c1.6 0 3-.4 4.3-1"/><path d="M9.9 9.9a3 3 0 0 0 4.2 4.2"/><path d="M3 3l18 18"/></symbol>
 <symbol id="i-person" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></symbol>
 <symbol id="i-mining" viewBox="0 0 24 24"><circle cx="6" cy="6" r="2.5"/><circle cx="18" cy="6" r="2.5"/><circle cx="12" cy="18" r="2.5"/><path d="M7.8 7.8 10.5 16M16.2 7.8 13.5 16M8.5 6h7"/></symbol>
 </svg>
@@ -279,7 +285,12 @@ details.fr .tools{margin-top:12px;display:flex;flex-wrap:wrap;gap:6px}
     <label for="lu">Usuario</label>
     <input id="lu" type="text" autocomplete="username" placeholder="usuario">
     <label for="lp">Contraseña</label>
-    <input id="lp" type="password" autocomplete="current-password" placeholder="••••••••">
+    <div class="pwrap">
+      <input id="lp" type="password" autocomplete="current-password" placeholder="••••••••">
+      <button type="button" class="eye" onclick="togglePw()" aria-label="Mostrar u ocultar contraseña" title="Mostrar/ocultar">
+        <svg class="ic sm" id="eyeic"><use href="#i-eye"/></svg>
+      </button>
+    </div>
     <button class="go" onclick="tryLogin()">Entrar <svg class="ic sm"><use href="#i-arrow"/></svg></button>
     <div class="err" id="lerr"><svg class="ic sm"><use href="#i-alert"/></svg>Usuario o contraseña incorrectos.</div>
     <div class="hint">Acceso restringido · Kyndryl × Postobón</div>
@@ -338,6 +349,13 @@ function logout(){
   document.getElementById('login').style.display='flex';
   document.getElementById('lu').value='';document.getElementById('lp').value='';
   document.getElementById('lerr').style.display='none';
+}
+function togglePw(){
+  var i=document.getElementById('lp');
+  var show=i.type==='password';
+  i.type=show?'text':'password';
+  document.querySelector('#eyeic use').setAttribute('href',show?'#i-eyeoff':'#i-eye');
+  i.focus();
 }
 document.getElementById('lp').addEventListener('keydown',function(e){if(e.key==='Enter')tryLogin()});
 document.getElementById('lu').addEventListener('keydown',function(e){if(e.key==='Enter')document.getElementById('lp').focus()});
