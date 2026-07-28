@@ -353,7 +353,231 @@ details.fr .body{font-size:15.5px}
 .demo-btn-secondary{background:#28747b}
 .demo-btn-secondary:hover{background:#17555b}
 @media(max-width:620px){.demo-actions{flex-direction:column;align-items:stretch}.demo-actions .demo-btn{justify-content:center;width:100%}}
+/* ===== Integracion final de componentes de index_visuales ===== */
+:root{
+  --iv-red:#ff462d;
+  --iv-red-dark:#d93622;
+  --iv-ink:#151515;
+  --iv-text:#424242;
+  --iv-muted:#666;
+  --iv-line:#e7dfda;
+  --iv-soft:#f7f3f0;
+  --iv-teal:#28747b;
+  --iv-shadow:0 22px 60px rgba(25,20,18,.10);
+  --iv-shadow-soft:0 10px 24px rgba(25,20,18,.07);
+}
+
+/* Dominios estaticos: mayor area de lectura y sin accion de clic */
+.grid7 .dom{
+  cursor:default!important;
+  min-height:330px!important;
+  padding:22px!important;
+  transform:none!important;
+}
+.grid7 .dom:hover,.grid7 .dom:focus,.grid7 .dom.active{
+  transform:none!important;
+  box-shadow:var(--iv-shadow-soft)!important;
+  outline:none!important;
+  grid-column:auto!important;
+}
+.grid7 .dom p{font-size:16px!important;line-height:1.68!important;color:#353535!important}
+.grid7 .dom h3{font-size:19px!important;line-height:1.25!important}
+.grid7 .dom[aria-disabled="true"]{user-select:text}
+
+/* Bloques traidos de index_visuales */
+.iv-section{margin-top:58px;font-family:Arial,Helvetica,sans-serif}
+.iv-section *{box-sizing:border-box}
+.iv-section-head{display:grid;grid-template-columns:1.12fr .88fr;gap:46px;align-items:end;margin-bottom:28px}
+.iv-kicker{font-size:12px;line-height:1;text-transform:uppercase;letter-spacing:.14em;color:var(--iv-red);font-weight:900;margin-bottom:14px}
+.iv-section-head h3{font-size:clamp(36px,5vw,58px);line-height:.96;letter-spacing:-.055em;margin:0;color:var(--iv-ink);font-weight:800}
+.iv-section-head>p{font-size:17px!important;line-height:1.55!important;color:#5b5b5b!important;margin:0!important;max-width:520px}
+
+/* Once frentes */
+.iv-pillars-layout{display:grid;grid-template-columns:.78fr 1.22fr;gap:20px;align-items:start}
+.iv-pillar-list{display:grid;gap:10px;position:sticky;top:138px}
+.iv-pillar-btn{border:1px solid var(--iv-line);background:#fff;border-radius:17px;padding:14px;text-align:left;cursor:pointer;display:flex;gap:12px;align-items:center;box-shadow:0 8px 18px rgba(20,20,20,.05);transition:.18s ease;font-family:Arial,Helvetica,sans-serif;font-size:16px;color:var(--iv-ink)}
+.iv-pillar-btn:hover{transform:translateX(4px);border-color:#d8cbc5}
+.iv-pillar-btn.active{background:var(--iv-ink);color:#fff;border-color:var(--iv-ink)}
+.iv-pillar-btn .iv-idx{width:30px;height:30px;border-radius:10px;background:rgba(255,70,45,.12);color:var(--iv-red);display:grid;place-items:center;font-weight:900;font-size:12px;flex:0 0 auto}
+.iv-pillar-btn.active .iv-idx{background:rgba(255,255,255,.12);color:#fff}
+.iv-pillar-detail{background:#fff;border:1px solid var(--iv-line);border-radius:30px;padding:28px;box-shadow:var(--iv-shadow);min-height:640px}
+.iv-detail-top{display:flex;align-items:flex-start;justify-content:space-between;gap:18px;border-bottom:1px solid var(--iv-line);padding-bottom:20px;margin-bottom:20px}
+.iv-tag{display:inline-flex;align-items:center;border-radius:999px;background:var(--iv-soft);border:1px solid var(--iv-line);padding:7px 10px;font-size:12px;font-weight:800;color:#555}
+.iv-detail-top h4{font-size:34px;line-height:1.05;letter-spacing:-.04em;margin:12px 0 10px;color:var(--iv-ink)}
+.iv-detail-top p{color:#4c4c4c!important;margin:0!important;max-width:680px;font-size:16px!important;line-height:1.55!important}
+.iv-summary-btn{width:106px;height:76px;flex:0 0 auto;border:1px solid var(--iv-line);border-radius:999px;background:#fff;font-size:15px;font-weight:800;cursor:pointer;box-shadow:var(--iv-shadow-soft);font-family:Arial,Helvetica,sans-serif}
+.iv-summary-btn:hover{background:var(--iv-ink);color:#fff}
+.iv-detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:18px}
+.iv-detail-box{background:var(--iv-soft);border:1px solid var(--iv-line);border-radius:20px;padding:18px}
+.iv-detail-box h5{font-size:16px;margin:0;color:var(--iv-ink)}
+.iv-detail-box ul{margin:8px 0 0;padding-left:18px;color:#4d4d4d;font-size:15px;line-height:1.55}
+.iv-detail-box li+li{margin-top:6px}
+.iv-accelerators{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.iv-accelerators span{font-size:12px;font-weight:800;background:#fff;border:1px solid var(--iv-line);padding:7px 9px;border-radius:999px;color:#4b4b4b}
+
+/* Roadmap 16 semanas */
+.iv-timeline-wrap{background:#fff;border:1px solid var(--iv-line);border-radius:32px;box-shadow:var(--iv-shadow);padding:24px;overflow:hidden}
+.iv-phase-tabs{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-bottom:22px}
+.iv-phase-tab{border:1px solid var(--iv-line);background:var(--iv-soft);border-radius:16px;padding:13px 10px;text-align:left;cursor:pointer;min-height:96px;transition:.18s ease;font-family:Arial,Helvetica,sans-serif}
+.iv-phase-tab strong{display:block;font-size:15px;margin-bottom:4px;letter-spacing:-.02em}
+.iv-phase-tab span{font-size:12px;color:#636363}
+.iv-phase-tab.active{background:var(--iv-red);border-color:var(--iv-red);color:#fff;box-shadow:0 18px 30px rgba(255,70,45,.25);transform:translateY(-3px)}
+.iv-phase-tab.active span{color:#fff1ef}
+.iv-phase-layout{display:grid;grid-template-columns:.9fr 1.1fr;gap:20px;align-items:start}
+.iv-weeks{height:78px;display:grid;grid-template-columns:repeat(16,1fr);gap:3px;margin:10px 0 18px}
+.iv-week{display:grid;place-items:center;font-size:11px;background:#f0ece8;border-radius:8px;color:#777;font-weight:800}
+.iv-week.on{background:linear-gradient(180deg,var(--iv-red),#ff725c);color:#fff}
+.iv-phase-copy{background:#171717;color:#fff;border-radius:24px;padding:22px;min-height:390px}
+.iv-phase-copy h4{color:#fff;font-size:26px;margin:0 0 10px}
+.iv-phase-copy p{color:#dedede!important;margin:0 0 14px!important;font-size:16px!important;line-height:1.55!important}
+.iv-output-list{display:grid;gap:10px;margin-top:12px}
+.iv-output{display:flex;gap:10px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);padding:11px 12px;border-radius:14px;font-size:13px;color:#eee}
+.iv-output::before{content:"✓";font-weight:900;color:#9ef0b8}
+.iv-workstreams{display:grid;gap:9px}
+.iv-stream{display:grid;grid-template-columns:150px 1fr;gap:10px;align-items:center;font-size:12px;color:#555}
+.iv-stream-track{height:16px;border-radius:999px;background:#f0ece8;position:relative;overflow:hidden}
+.iv-stream-fill{height:100%;border-radius:999px;background:linear-gradient(90deg,var(--iv-teal),var(--iv-red));position:absolute;left:var(--start);width:var(--width)}
+
+/* Gobierno y riesgos */
+.iv-gov-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:start}
+.iv-gov-stack{background:#fff;border:1px solid var(--iv-line);border-radius:28px;padding:22px;box-shadow:var(--iv-shadow)}
+.iv-gov-layer{display:grid;grid-template-columns:54px 1fr;gap:14px;align-items:center;border:1px solid var(--iv-line);border-radius:18px;padding:13px;background:var(--iv-soft)}
+.iv-gov-layer+.iv-gov-layer{margin-top:10px}
+.iv-gov-num{width:44px;height:44px;border-radius:15px;background:var(--iv-red);color:#fff;display:grid;place-items:center;font-weight:900}
+.iv-gov-layer strong{font-size:16px;color:var(--iv-ink)}
+.iv-gov-layer p{margin:2px 0 0!important;color:#5e5e5e!important;font-size:13.5px!important;line-height:1.45!important}
+.iv-risk-panel{background:linear-gradient(135deg,#191919,#2b2b2b);color:#fff;border-radius:28px;padding:24px;box-shadow:var(--iv-shadow)}
+.iv-risk-panel h4{color:#fff;font-size:24px;margin:0 0 12px}
+.iv-risk-panel p{color:#dcdcdc!important;font-size:15px!important;line-height:1.55!important}
+.iv-risk-row{display:flex;align-items:center;justify-content:space-between;gap:10px;border-top:1px solid rgba(255,255,255,.12);padding:13px 0;font-size:14px}
+.iv-risk-row:last-child{padding-bottom:0}
+.iv-risk-row strong{color:#fff;text-align:right}
+
+/* Entregables */
+.iv-deliverable-toolbar{display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin-bottom:18px}
+.iv-filters{display:flex;gap:8px;flex-wrap:wrap}
+.iv-filter-btn{border:1px solid var(--iv-line);background:#fff;border-radius:999px;padding:9px 12px;font-size:13px;font-weight:800;cursor:pointer;font-family:Arial,Helvetica,sans-serif}
+.iv-filter-btn.active{background:var(--iv-ink);color:#fff;border-color:var(--iv-ink)}
+.iv-search{min-width:260px;border:1px solid var(--iv-line);background:#fff;border-radius:999px;padding:12px 15px;outline:none;box-shadow:0 8px 18px rgba(20,20,20,.05);font-family:Arial,Helvetica,sans-serif;font-size:14px}
+.iv-deliverables{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.iv-deliverable{background:#fff;border:1px solid var(--iv-line);border-radius:20px;padding:18px;box-shadow:0 10px 22px rgba(20,20,20,.06);display:flex;flex-direction:column;gap:10px;min-height:180px}
+.iv-deliverable .iv-cat{align-self:flex-start;font-size:11px;font-weight:900;color:var(--iv-red);background:rgba(255,70,45,.08);border:1px solid rgba(255,70,45,.18);border-radius:999px;padding:6px 8px;text-transform:uppercase;letter-spacing:.05em}
+.iv-deliverable h4{font-size:20px;line-height:1.15;margin:0;color:var(--iv-ink)}
+.iv-deliverable p{margin:0!important;color:#505050!important;font-size:15px!important;line-height:1.55!important}
+.iv-empty{grid-column:1/-1;padding:24px;border:1px dashed var(--iv-line);border-radius:18px;color:#666}
+
+/* Modal de sintesis */
+.iv-modal{position:fixed;inset:0;background:rgba(20,20,20,.58);display:none;align-items:center;justify-content:center;z-index:4000;padding:22px}
+.iv-modal.open{display:flex}
+.iv-modal-card{background:#fff;border-radius:28px;max-width:720px;width:100%;padding:28px;box-shadow:0 35px 90px rgba(0,0,0,.32);position:relative}
+.iv-modal-close{position:absolute;right:18px;top:18px;border:0;background:var(--iv-soft);border-radius:999px;width:38px;height:38px;cursor:pointer;font-size:20px}
+.iv-modal-card h3{font-size:30px;line-height:1.05;margin:14px 45px 10px 0}
+.iv-modal-card p{font-size:16px!important;color:#4b4b4b!important}
+
+/* Aceleradores: boton assessment en F6 segunda tarjeta */
+.iv-assessment-action{margin-top:16px}
+
+@media(max-width:980px){
+  .iv-section-head,.iv-pillars-layout,.iv-phase-layout,.iv-gov-grid{grid-template-columns:1fr}
+  .iv-pillar-list{position:relative;top:0;grid-template-columns:repeat(2,1fr)}
+  .iv-deliverables{grid-template-columns:1fr 1fr}
+  .iv-phase-copy{min-height:auto}
+}
+@media(max-width:720px){
+  .iv-section{margin-top:42px}
+  .iv-section-head h3{font-size:38px}
+  .iv-pillar-list,.iv-detail-grid,.iv-deliverables{grid-template-columns:1fr}
+  .iv-phase-tabs{grid-template-columns:1fr 1fr}
+  .iv-weeks{height:auto;grid-template-columns:repeat(8,1fr)}
+  .iv-stream{grid-template-columns:115px 1fr}
+  .iv-pillar-detail,.iv-timeline-wrap,.iv-gov-stack,.iv-risk-panel{border-radius:22px;padding:18px}
+  .iv-detail-top{display:block}
+  .iv-summary-btn{width:auto;height:auto;padding:11px 16px;margin-top:16px}
+  .iv-search{width:100%;min-width:0}
+}
+
 </style>
+
+<style>
+/* ===== Final home expansion and accelerator numbering ===== */
+#p-inicio .fh-home-upgrade{font-family:Arial,Helvetica,sans-serif;color:#151515;margin-bottom:68px}
+#p-inicio .fh-home-upgrade *{box-sizing:border-box}
+.fh-hero{position:relative;padding:6px 0 34px;overflow:hidden}
+.fh-hero:before{content:"";position:absolute;right:-8%;top:-8%;width:46vw;height:46vw;max-width:620px;max-height:620px;background:repeating-linear-gradient(115deg,rgba(255,70,45,.10) 0 3px,transparent 3px 24px);clip-path:polygon(34% 0,100% 0,100% 100%,0 100%);opacity:.58;pointer-events:none}
+.fh-hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:44px;align-items:center;position:relative;z-index:1}
+.fh-eyebrow{display:inline-flex;align-items:center;gap:9px;border:1px solid var(--line);border-radius:999px;padding:8px 12px;background:#fff;color:var(--teal-dark);font-size:12px;font-weight:850;letter-spacing:.04em;text-transform:uppercase;box-shadow:0 8px 20px rgba(25,20,18,.05)}
+.fh-eyebrow:before{content:"";width:9px;height:9px;border-radius:50%;background:var(--red);box-shadow:0 0 0 5px rgba(255,70,45,.14)}
+.fh-copy h2{font-size:clamp(48px,6.2vw,82px);line-height:.93;letter-spacing:-.065em;margin:22px 0 14px;max-width:770px;font-weight:850}
+.fh-copy h2 em{font-style:normal;color:var(--red)}
+.fh-copy>p{font-size:18px!important;line-height:1.58!important;color:#404040!important;max-width:720px;margin:0!important}
+.fh-cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+.fh-btn{border:0;border-radius:999px;padding:14px 19px;font-family:Arial,Helvetica,sans-serif;font-size:14px;font-weight:850;cursor:pointer;display:inline-flex;align-items:center;gap:9px;transition:transform .2s ease,border-color .2s ease,background .2s ease;box-shadow:var(--shadow-soft)}
+.fh-btn:hover{transform:translateY(-2px)}
+.fh-btn-primary{background:#111;color:#fff}
+.fh-btn-primary:hover{background:#000}
+.fh-btn-secondary{background:#fff;color:#181818;border:1px solid var(--line)}
+.fh-btn-secondary:hover{border-color:var(--red);color:var(--red)}
+.fh-btn .ic{width:17px;height:17px}
+.fh-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:34px}
+.fh-stat{background:#fff;border:1px solid var(--line);border-radius:17px;padding:15px 14px;min-height:104px;box-shadow:0 9px 22px rgba(25,20,18,.055)}
+.fh-stat strong{display:block;color:var(--red);font-size:31px;line-height:1;font-weight:900;letter-spacing:-.05em}
+.fh-stat span{display:block;color:#505050;font-size:12.5px;line-height:1.35;margin-top:8px}
+.fh-visual{position:relative;overflow:hidden;background:linear-gradient(145deg,#181818,#080808);border-radius:32px;padding:25px;color:#fff;box-shadow:0 34px 88px rgba(20,20,20,.28);min-height:548px}
+.fh-visual:before{content:"";position:absolute;right:-90px;top:-90px;width:310px;height:310px;background:radial-gradient(circle,rgba(255,70,45,.52),transparent 66%)}
+.fh-visual-head{display:flex;justify-content:space-between;align-items:center;position:relative;z-index:1;font-size:14px;color:#ddd;gap:12px}
+.fh-visual-head span{font-weight:850;color:#fff}
+.fh-visual-head b{font-size:11px;padding:7px 10px;border-radius:999px;background:rgba(72,181,123,.18);color:#bdf4d0;border:1px solid rgba(72,181,123,.38);white-space:nowrap}
+.fh-orbit{height:330px;display:grid;place-items:center;position:relative}
+.fh-orbit svg{width:300px;height:300px;filter:drop-shadow(0 16px 28px rgba(0,0,0,.36))}
+.fh-orbit-center{position:absolute;text-align:center;width:166px}
+.fh-orbit-center strong{display:block;font-size:52px;line-height:1;letter-spacing:-.07em;color:#fff}
+.fh-orbit-center span{display:block;font-size:12px;color:#d7d7d7;margin-top:8px;line-height:1.35}
+.fh-streams{display:grid;grid-template-columns:1fr 1fr;gap:11px;position:relative;z-index:1}
+.fh-stream{background:rgba(255,255,255,.075);border:1px solid rgba(255,255,255,.12);border-radius:13px;padding:11px}
+.fh-stream i{height:6px;width:var(--w);display:block;border-radius:999px;background:linear-gradient(90deg,var(--red),#ffb84d);margin-bottom:8px}
+.fh-stream b{font-size:12.5px;color:#ededed}
+.fh-principles{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:34px;position:relative;z-index:1}
+.fh-principle{background:#fff;border:1px solid var(--line);border-radius:20px;padding:18px;display:flex;align-items:center;gap:13px;text-align:left;box-shadow:var(--shadow-soft);min-height:94px}
+.fh-principle>.ic:first-child{width:26px;height:26px;color:var(--red);flex:0 0 auto}
+.fh-principle div{flex:1}
+.fh-principle b{font-size:15px;display:block}
+.fh-principle small{font-size:13px;color:#555;display:block;margin-top:4px;line-height:1.35}
+.fh-principle .fh-go{width:18px;height:18px;color:var(--red);flex:0 0 auto}
+.fh-summary{padding:32px 0 52px}
+.fh-summary-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.fh-summary-card{position:relative;overflow:hidden;background:#fff;border:1px solid var(--line);border-radius:23px;padding:22px;box-shadow:var(--shadow-soft);min-height:250px}
+.fh-summary-card:after{content:"";position:absolute;right:-42px;top:-42px;width:116px;height:116px;background:radial-gradient(circle,rgba(255,70,45,.14),transparent 66%);border-radius:50%}
+.fh-summary-icon{width:43px;height:43px;border-radius:14px;background:linear-gradient(135deg,rgba(255,70,45,.15),rgba(30,113,119,.12));display:grid;place-items:center;margin-bottom:16px;color:var(--red)}
+.fh-summary-icon .ic{width:22px;height:22px}
+.fh-summary-card h3{font-size:24px;line-height:1.02;letter-spacing:-.04em;margin:0 0 14px;color:#151515}
+.fh-summary-card p{margin:0!important;color:#555!important;font-size:15px!important;line-height:1.55!important}
+.fh-industry{background:linear-gradient(180deg,#111,#1c1c1c);color:#fff;border-radius:36px;padding:35px;box-shadow:0 32px 90px rgba(20,20,20,.26)}
+.fh-industry-head{display:grid;grid-template-columns:1.08fr .92fr;gap:42px;align-items:end;margin-bottom:24px}
+.fh-industry-kicker{font-size:12px;text-transform:uppercase;letter-spacing:.14em;color:#ffb6aa;font-weight:900;margin-bottom:14px}
+.fh-industry h3{font-size:clamp(38px,5vw,60px);line-height:.94;letter-spacing:-.055em;margin:0;color:#fff;max-width:640px}
+.fh-industry-head>p{margin:0!important;color:#ddd!important;font-size:16.5px!important;line-height:1.52!important;max-width:530px}
+.fh-value-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.fh-value-card{background:rgba(255,255,255,.075);border:1px solid rgba(255,255,255,.14);border-radius:20px;padding:17px;min-height:142px}
+.fh-value-card strong{display:block;margin-bottom:9px;color:#fff;font-size:16px;line-height:1.25}
+.fh-value-card span{font-size:13.5px;line-height:1.55;color:#d5d5d5}
+@media(max-width:980px){
+  .fh-hero-grid,.fh-industry-head{grid-template-columns:1fr}
+  .fh-visual{max-width:760px}
+  .fh-summary-grid{grid-template-columns:repeat(3,1fr)}
+  .fh-value-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:720px){
+  .fh-copy h2{font-size:45px}
+  .fh-stats{grid-template-columns:1fr 1fr}
+  .fh-principles,.fh-summary-grid,.fh-value-grid{grid-template-columns:1fr}
+  .fh-visual{border-radius:25px;padding:19px;min-height:auto}
+  .fh-orbit{height:280px}.fh-orbit svg{width:255px;height:255px}
+  .fh-streams{grid-template-columns:1fr}
+  .fh-industry{border-radius:25px;padding:24px}
+  .fh-industry h3{font-size:40px}
+}
+</style>
+
 </head>
 <body>
 
@@ -517,6 +741,7 @@ function goTo(id){
   setTimeout(initReveal,40);
 }
 function bindApp(){
+  if(window.applyVisualUpdates)window.applyVisualUpdates();
   document.querySelectorAll('[data-page]').forEach(function(el){
     el.addEventListener('click',function(){goTo(el.dataset.page)});
   });
@@ -595,5 +820,721 @@ function closeDemo(){
 document.getElementById('lp').addEventListener('keydown',function(e){if(e.key==='Enter')tryLogin()});
 document.getElementById('lu').addEventListener('keydown',function(e){if(e.key==='Enter')document.getElementById('lp').focus()});
 </script>
+<script>
+/* ===== Componentes interactivos tomados de index_visuales ===== */
+(function(){
+  const PILLARS=[
+    {title:'Estrategia y alineación ejecutiva',tag:'Dirección',objective:'Establecer la dirección estratégica del laboratorio, conectando la evolución SAP con objetivos de negocio, prioridades ejecutivas y criterios de decisión.',bullets:['Alinear drivers de transformación','Definir alcance y límites de Fase 0','Establecer principios rectores','Diseñar modelo de gobierno ejecutivo'],deliverables:['Executive Alignment Canvas','Transformation Drivers Map','Decision Framework','Phase 0 Charter'],acc:['Executive Alignment Canvas','Decision Framework','Risk Register']},
+    {title:'Procesos y criticidad',tag:'Negocio',objective:'Clasificar procesos por valor, complejidad, riesgo y nivel de transformación requerido para priorizar el roadmap.',bullets:['Mapear procesos AS-IS priorizados','Identificar variantes y excepciones','Detectar pain points e ineficiencias','Evaluar oportunidades Fit-to-Standard'],deliverables:['Mapa AS-IS priorizado','Fit-gap por proceso','Priorización de oportunidades','Mapa de procesos críticos'],acc:['SAP Signavio','Process Mining','Workshops L2/L3']},
+    {title:'Arquitectura empresarial',tag:'Arquitectura',objective:'Definir la arquitectura SAP objetivo y el ecosistema de aplicaciones, equilibrando escalabilidad, seguridad, IA, Clean Core y crecimiento futuro.',bullets:['Mapear sistemas SAP y no SAP','Evaluar deuda técnica y ciclo de vida','Identificar oportunidades de racionalización','Construir BOM de aplicaciones futuro'],deliverables:['Línea base AS-IS','Mapa de dependencias','Arquitectura objetivo preliminar','Application BOM'],acc:['SAP LeanIX','SAP Readiness Check','Clean Field']},
+    {title:'Integraciones y flujos de datos',tag:'Integración',objective:'Identificar integraciones críticas, riesgos de continuidad y oportunidades de modernización bajo principios de Clean Core.',bullets:['Inventariar interfaces y middleware','Clasificar por dominio, estilo y criticidad','Definir patrones API/eventos','Construir roadmap de modernización'],deliverables:['Inventario de interfaces','Arquitectura de integración objetivo','Plan de racionalización','Categoría de migración por interfaz'],acc:['ISA-M','SAP Integration Suite','SAP API Business Hub']},
+    {title:'Datos, migración y reportes',tag:'Datos',objective:'Evaluar preparación de datos, calidad, volumen, histórico, gobierno, carve-out y estrategia de analítica futura.',bullets:['Evaluar datos maestros y transaccionales','Definir estrategia de histórico y archivado','Analizar carve-out de sociedades','Modernizar reportes y analítica'],deliverables:['Data Readiness Assessment','Estrategia de migración','Estrategia de carve-out','Roadmap de analítica'],acc:['DTS','SAP ILM','Datasphere','Business Data Cloud']},
+    {title:'Clean Core y código personalizado',tag:'Clean Core',objective:'Inventariar y clasificar código Z, add-ons y extensiones para decidir qué mantener, modernizar, reemplazar o retirar.',bullets:['Análisis de uso y compatibilidad','Evaluación fit-to-standard','Puntuación de complejidad','Priorización de remediación asistida por IA'],deliverables:['Dashboard Clean Field','Informe Clean Core','Roadmap de remediación','Caso de negocio Clean Field'],acc:['Clean Field','Agentic AI','Readiness Check']},
+    {title:'Seguridad, cumplimiento y controles',tag:'Riesgo',objective:'Identificar impactos de S/4HANA en roles, accesos, SoD, controles, cumplimiento, auditoría y gobierno de seguridad.',bullets:['Evaluar IAM y roles SAP','Revisar SoD y accesos críticos','Analizar RCM e ITGCs','Definir arquitectura futura de seguridad'],deliverables:['Evaluación IAM','Matriz de riesgos y controles','Estrategia roles/autorizaciones','Presentación ejecutiva de seguridad'],acc:['SAP GRC','RAM','CCM','RCM Framework']},
+    {title:'Valor y caso de negocio',tag:'Valor',objective:'Construir un caso de negocio cuantificado y basado en datos para soportar decisiones de inversión y escenario de transición.',bullets:['Definir línea base de KPIs','Construir Value Driver Tree','Modelar TCO a cinco años','Comparar escenarios de despliegue'],deliverables:['Business Case','TCO 5 años','Value Driver Tree','Análisis financiero por escenario'],acc:['Value Viewpoint','SAP Value Engineering','Benchmarks']},
+    {title:'Gestión del cambio',tag:'Personas',objective:'Evaluar preparación organizacional, gobierno, disponibilidad de SMEs, impactos de cambio y ruta de adopción.',bullets:['Identificar stakeholders','Evaluar capacidad organizacional','Diseñar modelo organizacional futuro','Definir hoja de ruta de preparación'],deliverables:['Mapa de stakeholders','Readiness organizacional','Plan de cambio preliminar','Modelo de recursos'],acc:['Dynamic Adoption Framework','Kyndryl 360','Change Champion Network']},
+    {title:'Arquitectura objetivo y transición',tag:'Decisión',objective:'Consolidar hallazgos para definir arquitectura objetivo y comparar Brownfield, Greenfield y Selective Data Transition.',bullets:['Diseñar target architecture por dimensión','Comparar escenarios de transición','Definir matriz de decisión','Identificar riesgos y dependencias'],deliverables:['Arquitectura objetivo','Matriz de escenarios','Roadmap arquitectónico','Backlog inicial'],acc:['Signavio','LeanIX','Cloud ALM']},
+    {title:'Roadmap y aceleración de ejecución',tag:'Ejecución',objective:'Convertir hallazgos en roadmap, oleadas, backlog, riesgos, decisiones y plan de movilización de la siguiente fase.',bullets:['Consolidar hallazgos','Priorizar iniciativas','Construir roadmap de transformación','Preparar SAP Cloud ALM'],deliverables:['Roadmap de transformación','Backlog SAP Cloud ALM','Plan Fase 1','Modelo de gobierno de ejecución'],acc:['SAP Cloud ALM','Backlog','Decision Log']}
+  ];
+
+  const PHASES=[
+    {name:'Prepare',weeks:[1,2],desc:'Establece el marco de trabajo del laboratorio: alcance, gobierno, stakeholders, criterios de decisión y cambios obligatorios de S/4HANA.',outputs:['Lab Charter','Mapa de stakeholders','Matriz de decisiones clave','Principios de transformación']},
+    {name:'Discover',weeks:[2,3,4,5,6],desc:'Construye la línea base del core digital actual: procesos, aplicaciones, integraciones, datos, tecnología, readiness técnico y pain points.',outputs:['Mapa de procesos AS-IS','Inventario de aplicaciones','Mapa de integraciones','Mapa de capacidades','Resumen readiness técnico']},
+    {name:'Categorize',weeks:[6,7,8,9],desc:'Convierte hallazgos en prioridades y decisiones: impactos, brechas, riesgos, dependencias, quick wins y oportunidades de simplificación.',outputs:['Matriz de impactos','Matriz de riesgos y dependencias','Mapa de oportunidades','Priorización de procesos']},
+    {name:'Enterprise Options',weeks:[9,10,11,12],desc:'Define alternativas y toma de decisiones: arquitectura objetivo preliminar, escenarios de transición y principios de diseño.',outputs:['Arquitectura objetivo preliminar','Escenarios de transición','Principios de diseño','Modelo de oleadas']},
+    {name:'Accelerate',weeks:[12,13,14,15,16],desc:'Prepara la ejecución: roadmap, backlog, riesgos, hitos, plan de movilización, gobierno y activos para Fit-to-Standard.',outputs:['Roadmap de transformación','Backlog inicial SAP Cloud ALM','Plan de Fase 1','Plan de aceleración','Validación ejecutiva']}
+  ];
+
+  const DELIVERABLES=[
+    ['Ejecutivo','Phase 0 Charter','Documento corto con alcance, objetivos, stakeholders, gobierno y decisiones esperadas.'],
+    ['Ejecutivo','Executive Alignment Canvas','Visión compartida de la transformación, ambición, prioridades y criterios ejecutivos.'],
+    ['Ejecutivo','Business Case y TCO 5 años','Modelo financiero para comparar opciones de despliegue, migración y valor esperado.'],
+    ['Procesos','Mapa de procesos AS-IS priorizado','Procesos end-to-end y variantes relevantes con foco en L2/L3 y profundidad selectiva.'],
+    ['Procesos','Priorización Fit-to-Standard','Clasificación de procesos candidatos a estándar, rediseño, IA o diferenciación estratégica.'],
+    ['Arquitectura','Arquitectura objetivo preliminar','Vista conceptual del landscape SAP S/4HANA y ecosistema de aplicaciones relacionado.'],
+    ['Arquitectura','Application BOM futuro','Componentes SAP, BTP, Integration Suite, IA, analítica, infraestructura y extensiones.'],
+    ['Integración','Inventario de interfaces','Interfaces SAP y no SAP clasificadas por dominio, estilo, criticidad y complejidad.'],
+    ['Integración','Roadmap de modernización de integraciones','Plan para retirar, migrar, modernizar o rediseñar interfaces bajo ISA-M y Clean Core.'],
+    ['Datos','Data Readiness Assessment','Evaluación de calidad, volumen, gobierno, ownership y preparación de datos para S/4HANA.'],
+    ['Datos','Estrategia de migración y carve-out','Definición de alcance, separación de sociedades, histórico, retención y continuidad.'],
+    ['Datos','Estrategia de reportes y analítica','Evaluación de modelos actuales y arquitectura futura con Datasphere, BDC, SAC y Embedded Analytics.'],
+    ['Clean Core','Dashboard Clean Field','Vista ejecutiva de objetos personalizados, uso, compatibilidad, riesgos y prioridades de remediación.'],
+    ['Clean Core','Informe de evaluación de código Z','Análisis de compatibilidad, dependencias, remediación, reemplazo, retiro y esfuerzo estimado.'],
+    ['Seguridad','Evaluación IAM y SoD','Revisión de roles, autorizaciones, accesos críticos, segregación de funciones y remediación.'],
+    ['Seguridad','Matriz de riesgos y controles','Evaluación RCM, ITGCs, cumplimiento, controles compensatorios y riesgos residuales.'],
+    ['Ejecución','Roadmap de transformación','Fases, oleadas, hitos, dependencias, criterios de decisión y ruta de implementación.'],
+    ['Ejecución','Backlog SAP Cloud ALM','Gaps, tareas, riesgos, decisiones, requerimientos y actividades preparatorias.'],
+    ['Ejecución','Plan de Fase 1','Plan concreto de movilización para iniciar Prepare/Explore o la siguiente etapa definida.'],
+    ['Gobierno','Modelo de gobierno','Comités, roles, responsabilidades, gestión de riesgos, cambios, calidad y reporting ejecutivo.'],
+    ['OCM','Readiness organizacional','Evaluación de capacidad, stakeholders, SMEs, impactos y ruta de adopción.'],
+    ['OCM','Plan de preparación de la fuerza laboral','Hitos, comunicaciones, capacitación y acciones iniciales para preparar la organización.']
+  ];
+
+  function sectionHead(kicker,title,copy){
+    return '<div class="iv-section-head"><div><div class="iv-kicker">'+kicker+'</div><h3>'+title+'</h3></div><p>'+copy+'</p></div>';
+  }
+  function findPageBy(selector){const el=document.querySelector(selector);return el?el.closest('.page'):null;}
+  function nextByClass(start,cls){let el=start?start.nextElementSibling:null;while(el&&!el.classList.contains(cls))el=el.nextElementSibling;return el;}
+
+  function makeDomainsStatic(){
+    document.querySelectorAll('.grid7 .dom').forEach(function(card){
+      card.classList.remove('active');
+      card.removeAttribute('tabindex');
+      card.removeAttribute('role');
+      card.setAttribute('aria-disabled','true');
+      if(!card.dataset.ivStatic){
+        const stop=function(e){e.stopImmediatePropagation();};
+        card.addEventListener('click',stop,true);
+        card.addEventListener('keydown',stop,true);
+        card.dataset.ivStatic='1';
+      }
+    });
+  }
+
+  function ensureSummaryModal(){
+    let modal=document.getElementById('iv-summary-modal');
+    if(modal)return modal;
+    modal=document.createElement('div');
+    modal.id='iv-summary-modal';modal.className='iv-modal';
+    modal.innerHTML='<div class="iv-modal-card" role="dialog" aria-modal="true" aria-labelledby="iv-modal-title"><button class="iv-modal-close" aria-label="Cerrar">×</button><span class="iv-tag" id="iv-modal-tag"></span><h3 id="iv-modal-title"></h3><p id="iv-modal-copy"></p></div>';
+    document.body.appendChild(modal);
+    const close=function(){modal.classList.remove('open');document.body.style.overflow='';};
+    modal.querySelector('.iv-modal-close').addEventListener('click',close);
+    modal.addEventListener('click',function(e){if(e.target===modal)close();});
+    document.addEventListener('keydown',function(e){if(e.key==='Escape'&&modal.classList.contains('open'))close();});
+    return modal;
+  }
+
+  function renderPillars(list,detail,active){
+    active=active||0;
+    list.innerHTML=PILLARS.map(function(p,i){return '<button type="button" class="iv-pillar-btn '+(i===active?'active':'')+'" data-i="'+i+'"><span class="iv-idx">'+String(i+1).padStart(2,'0')+'</span><span>'+p.title+'</span></button>';}).join('');
+    const p=PILLARS[active];
+    detail.innerHTML='<div class="iv-detail-top"><div><span class="iv-tag">'+p.tag+'</span><h4>'+p.title+'</h4><p>'+p.objective+'</p></div><button type="button" class="iv-summary-btn">Ver<br>síntesis</button></div><div class="iv-detail-grid"><div class="iv-detail-box"><h5>Objetivos principales</h5><ul>'+p.bullets.map(function(b){return '<li>'+b+'</li>';}).join('')+'</ul></div><div class="iv-detail-box"><h5>Entregables esperados</h5><ul>'+p.deliverables.map(function(b){return '<li>'+b+'</li>';}).join('')+'</ul></div></div><div class="iv-detail-box" style="margin-top:18px"><h5>Aceleradores y herramientas</h5><div class="iv-accelerators">'+p.acc.map(function(a){return '<span>'+a+'</span>';}).join('')+'</div></div>';
+    list.querySelectorAll('.iv-pillar-btn').forEach(function(btn){btn.addEventListener('click',function(){renderPillars(list,detail,+btn.dataset.i);});});
+    detail.querySelector('.iv-summary-btn').addEventListener('click',function(){
+      const modal=ensureSummaryModal();
+      modal.querySelector('#iv-modal-tag').textContent=p.tag;
+      modal.querySelector('#iv-modal-title').textContent=p.title;
+      modal.querySelector('#iv-modal-copy').textContent=p.objective;
+      modal.classList.add('open');document.body.style.overflow='hidden';
+    });
+  }
+
+  function replaceLab(){
+    if(document.getElementById('iv-pillars'))return;
+    const old=document.querySelector('.frentes');
+    if(!old)return;
+    const section=document.createElement('section');
+    section.id='iv-pillars';section.className='iv-section';
+    section.innerHTML=sectionHead('Pilares estratégicos','Once frentes integrados.<br>Una sola ruta de decisión.','Selecciona un pilar para ver sus objetivos, entregables y aceleradores. El diseño permite lectura rápida para ejecutivos y mayor profundidad para líderes funcionales y técnicos.')+'<div class="iv-pillars-layout"><div class="iv-pillar-list" id="iv-pillar-list"></div><div class="iv-pillar-detail" id="iv-pillar-detail" aria-live="polite"></div></div>';
+    old.replaceWith(section);
+    renderPillars(section.querySelector('#iv-pillar-list'),section.querySelector('#iv-pillar-detail'),0);
+  }
+
+  function renderPhase(section,active){
+    const tabs=section.querySelector('.iv-phase-tabs');
+    const weeks=section.querySelector('.iv-weeks');
+    const copy=section.querySelector('.iv-phase-copy');
+    tabs.innerHTML=PHASES.map(function(p,i){return '<button type="button" class="iv-phase-tab '+(i===active?'active':'')+'" data-i="'+i+'"><strong>'+p.name+'</strong><span>Semanas '+p.weeks[0]+'-'+p.weeks[p.weeks.length-1]+'</span></button>';}).join('');
+    weeks.innerHTML=Array.from({length:16},function(_,i){return '<div class="iv-week '+(PHASES[active].weeks.includes(i+1)?'on':'')+'">S'+(i+1)+'</div>';}).join('');
+    const p=PHASES[active];
+    copy.innerHTML='<h4>'+p.name+'</h4><p>'+p.desc+'</p><div class="iv-output-list">'+p.outputs.map(function(o){return '<div class="iv-output">'+o+'</div>';}).join('')+'</div>';
+    tabs.querySelectorAll('.iv-phase-tab').forEach(function(btn){btn.addEventListener('click',function(){renderPhase(section,+btn.dataset.i);});});
+  }
+
+  function createRoadmap(){
+    const section=document.createElement('section');section.id='iv-roadmap';section.className='iv-section';
+    section.innerHTML=sectionHead('Roadmap','16 semanas para pasar de alineación ejecutiva a plan accionable.','La línea de tiempo está organizada en cinco fases KynActivate: Prepare, Discover, Categorize, Enterprise Options y Accelerate. Cada fase deja activos concretos para reducir riesgo y acelerar la siguiente etapa.')+
+      '<div class="iv-timeline-wrap"><div class="iv-phase-tabs"></div><div class="iv-phase-layout"><div><div class="iv-weeks"></div><div class="iv-workstreams" aria-label="Frentes de trabajo superpuestos">'+
+      '<div class="iv-stream"><span>Gobierno / PMO</span><div class="iv-stream-track"><span class="iv-stream-fill" style="--start:0%;--width:100%"></span></div></div>'+
+      '<div class="iv-stream"><span>Estrategia y valor</span><div class="iv-stream-track"><span class="iv-stream-fill" style="--start:6%;--width:88%"></span></div></div>'+
+      '<div class="iv-stream"><span>Procesos</span><div class="iv-stream-track"><span class="iv-stream-fill" style="--start:20%;--width:62%"></span></div></div>'+
+      '<div class="iv-stream"><span>Arquitectura</span><div class="iv-stream-track"><span class="iv-stream-fill" style="--start:45%;--width:35%"></span></div></div>'+
+      '<div class="iv-stream"><span>Datos / Integraciones</span><div class="iv-stream-track"><span class="iv-stream-fill" style="--start:12%;--width:82%"></span></div></div>'+
+      '<div class="iv-stream"><span>OCM</span><div class="iv-stream-track"><span class="iv-stream-fill" style="--start:4%;--width:92%"></span></div></div>'+
+      '</div></div><div class="iv-phase-copy"></div></div></div>';
+    renderPhase(section,1);
+    return section;
+  }
+
+  function createGovernance(){
+    const section=document.createElement('section');section.id='iv-governance';section.className='iv-section';
+    section.innerHTML=sectionHead('Gobierno y control','Una estructura para sostener decisiones, calidad y trazabilidad.','El modelo propuesto combina Steering Committee, Comité de Dirección, PMO, Arquitectura y Diseño, líderes funcionales y habilitadores transversales como riesgos, cambios, calidad, comunicación y herramientas.')+
+      '<div class="iv-gov-grid"><div class="iv-gov-stack">'+
+      '<div class="iv-gov-layer"><div class="iv-gov-num">1</div><div><strong>Consejo Ejecutivo</strong><p>Validación de decisiones estratégicas, riesgos críticos y cambios mayores.</p></div></div>'+
+      '<div class="iv-gov-layer"><div class="iv-gov-num">2</div><div><strong>Comité de Dirección</strong><p>Seguimiento semanal, resolución de dependencias y revisión de entregables.</p></div></div>'+
+      '<div class="iv-gov-layer"><div class="iv-gov-num">3</div><div><strong>PMO</strong><p>Planeación, cronograma, acciones, documentación, reporting y control financiero.</p></div></div>'+
+      '<div class="iv-gov-layer"><div class="iv-gov-num">4</div><div><strong>Arquitectura y Diseño</strong><p>Validación contra Clean Core, RISE, integración, datos y buenas prácticas SAP.</p></div></div>'+
+      '<div class="iv-gov-layer"><div class="iv-gov-num">5</div><div><strong>Líderes funcionales</strong><p>Finanzas, compras, ventas, supply chain, manufactura, HR, TI, datos y seguridad.</p></div></div>'+
+      '</div><div class="iv-risk-panel"><h4>Gestión integrada de riesgos</h4><p>Durante la Fase 0 se mantiene un registro continuo de riesgos técnicos, funcionales, de datos, integración, disponibilidad y negocio.</p>'+
+      '<div class="iv-risk-row"><span>Probabilidad e impacto</span><strong>Calificados</strong></div><div class="iv-risk-row"><span>Plan de mitigación</span><strong>Asignado</strong></div><div class="iv-risk-row"><span>Responsable</span><strong>Definido</strong></div><div class="iv-risk-row"><span>Fecha objetivo</span><strong>Monitoreada</strong></div><div class="iv-risk-row"><span>Aseguramiento de calidad</span><strong>Metodológico + técnico</strong></div></div></div>';
+    return section;
+  }
+
+  function createDeliverables(){
+    const section=document.createElement('section');section.id='iv-deliverables-section';section.className='iv-section';
+    section.innerHTML=sectionHead('Entregables','Entregables ejecutivos, técnicos y operativos navegables.','Usa los filtros o el buscador para ubicar rápidamente el artefacto que necesitas revisar: estrategia, arquitectura, datos, seguridad, transición o ejecución.')+'<div class="iv-deliverable-toolbar"><div class="iv-filters"></div><input class="iv-search" placeholder="Buscar entregable, p. ej. datos, roadmap, seguridad..." aria-label="Buscar entregables"></div><div class="iv-deliverables"></div>';
+    const filters=section.querySelector('.iv-filters'),search=section.querySelector('.iv-search'),grid=section.querySelector('.iv-deliverables');
+    const categories=['Todos'].concat(Array.from(new Set(DELIVERABLES.map(function(d){return d[0];}))));
+    let current='Todos';
+    function drawFilters(){
+      filters.innerHTML=categories.map(function(c){return '<button type="button" class="iv-filter-btn '+(c===current?'active':'')+'" data-cat="'+c+'">'+c+'</button>';}).join('');
+      filters.querySelectorAll('.iv-filter-btn').forEach(function(btn){btn.addEventListener('click',function(){current=btn.dataset.cat;drawFilters();draw();});});
+    }
+    function draw(){
+      const q=(search.value||'').toLowerCase();
+      const rows=DELIVERABLES.filter(function(d){return (current==='Todos'||d[0]===current)&&d.join(' ').toLowerCase().includes(q);});
+      grid.innerHTML=rows.length?rows.map(function(d){return '<article class="iv-deliverable"><span class="iv-cat">'+d[0]+'</span><h4>'+d[1]+'</h4><p>'+d[2]+'</p></article>';}).join(''):'<div class="iv-empty">No se encontraron entregables con ese criterio.</div>';
+    }
+    drawFilters();draw();search.addEventListener('input',draw);
+    return section;
+  }
+
+  function replaceMethodology(){
+    const methodPage=findPageBy('.gantt')||findPageBy('.stages');
+    if(!methodPage)return;
+    if(!document.getElementById('iv-roadmap')){
+      const stages=methodPage.querySelector('.stages');
+      const gantt=methodPage.querySelector('.gantt');
+      const roadmap=createRoadmap();
+      if(stages)stages.replaceWith(roadmap);else if(gantt)gantt.before(roadmap);
+      if(gantt)gantt.remove();
+    }
+    let governance=document.getElementById('iv-governance');
+    if(!governance){
+      const oldGov=Array.from(methodPage.querySelectorAll('.two-col')).find(function(el){return /Modelo de gobierno/i.test(el.textContent)&&/Factores de éxito/i.test(el.textContent);});
+      governance=createGovernance();
+      if(oldGov)oldGov.replaceWith(governance);else{
+        const pager=methodPage.querySelector('.pager');
+        if(pager)pager.before(governance);else methodPage.appendChild(governance);
+      }
+    }
+    if(!document.getElementById('iv-deliverables-section')){
+      const deliverables=createDeliverables();
+      governance.after(deliverables);
+    }
+  }
+
+  function findGridAfterHeader(header){
+    let el=header?header.nextElementSibling:null;
+    while(el){if(el.classList&&el.classList.contains('tools-grid'))return el;el=el.nextElementSibling;}
+    return null;
+  }
+
+  function moveAssessmentButton(){
+    const tools=document.getElementById('p-tools')||findPageBy('.acc-h');
+    if(!tools)return;
+    tools.querySelectorAll('[data-demo="kyndryl_assessment"]').forEach(function(btn){btn.remove();});
+    tools.querySelectorAll('.demo-actions').forEach(function(box){if(!box.children.length)box.remove();});
+    const headers=Array.from(tools.querySelectorAll('.acc-h'));
+    const f5=headers.find(function(h){return /Datos, estrategia de migración y reportes/i.test(h.textContent);});
+    if(f5){
+      const f5Grid=findGridAfterHeader(f5);
+      if(f5Grid){
+        const demoCard=Array.from(f5Grid.querySelectorAll('.tool')).find(function(c){return c.querySelector('[data-demo="index_demo"]');});
+        if(demoCard){
+          const h=demoCard.querySelector('h4');if(h)h.textContent='Demo interactiva de alcance y preparación';
+          const p=demoCard.querySelector('p');if(p)p.textContent='Explora el alcance técnico de la transformación mediante la experiencia original de preparación y assessment de alcance.';
+        }
+      }
+    }
+    const f6=headers.find(function(h){return /Clean Core Design/i.test(h.textContent);});
+    const f6Grid=findGridAfterHeader(f6);
+    const cards=f6Grid?f6Grid.querySelectorAll('.tool'):[];
+    const second=cards[1];
+    if(second&&!second.querySelector('[data-demo="kyndryl_assessment"]')){
+      const wrap=document.createElement('div');wrap.className='iv-assessment-action';
+      wrap.innerHTML='<button class="demo-btn demo-btn-secondary" data-demo="kyndryl_assessment" data-title="Assessment Kyndryl"><svg class="ic sm"><use href="#i-chart"></use></svg>Abrir assessment Kyndryl</button>';
+      second.appendChild(wrap);
+    }
+  }
+
+  window.applyVisualUpdates=function(){
+    makeDomainsStatic();
+    replaceLab();
+    replaceMethodology();
+    moveAssessmentButton();
+  };
+})();
+
+</script>
+
+<script>
+/* ===== Final requested changes: home expansion and accelerator numbering ===== */
+(function(){
+  var previousApply=window.applyVisualUpdates;
+
+  function navigateByLabel(label){
+    var target=Array.from(document.querySelectorAll('[data-page]')).find(function(el){return (el.textContent||'').toLowerCase().indexOf(label.toLowerCase())!==-1;});
+    if(target&&typeof goTo==='function')goTo(target.dataset.page);
+  }
+
+  function createHomeUpgrade(){
+    var page=document.getElementById('p-inicio');
+    if(!page||document.getElementById('fh-home-upgrade'))return;
+    var host=page.querySelector('.wrap')||page;
+    var block=document.createElement('div');
+    block.id='fh-home-upgrade';
+    block.className='fh-home-upgrade';
+    block.innerHTML=''+
+      '<section class="fh-hero" aria-labelledby="fh-home-title">'+
+        '<div class="fh-hero-grid">'+
+          '<div class="fh-copy">'+
+            '<span class="fh-eyebrow">Propuesta t&eacute;cnica interactiva &middot; Fase 0</span>'+
+            '<h2 id="fh-home-title">Una ruta clara para evolucionar el <em>core digital</em> de Postob&oacute;n.</h2>'+
+            '<p>Un laboratorio ejecutivo de 16 semanas que conecta estrategia, procesos, arquitectura, datos y ejecuci&oacute;n para decidir el camino hacia SAP S/4HANA con menor riesgo y mayor trazabilidad.</p>'+
+            '<div class="fh-cta">'+
+              '<button type="button" class="fh-btn fh-btn-primary" data-fh-target="lab">Explorar el Planning Lab <svg class="ic"><use href="#i-arrow"></use></svg></button>'+
+              '<button type="button" class="fh-btn fh-btn-secondary" data-fh-target="metodologia">Ver la ruta de 16 semanas</button>'+
+            '</div>'+
+            '<div class="fh-stats" aria-label="Indicadores clave de la propuesta">'+
+              '<div class="fh-stat"><strong>16</strong><span>semanas</span></div>'+
+              '<div class="fh-stat"><strong>11</strong><span>frentes integrados</span></div>'+
+              '<div class="fh-stat"><strong>5</strong><span>etapas KynActivate</span></div>'+
+              '<div class="fh-stat"><strong>3</strong><span>escenarios S/4HANA</span></div>'+
+            '</div>'+
+          '</div>'+
+          '<aside class="fh-visual" aria-label="Panel visual del Core Digital Evolution Planning Lab">'+
+            '<div class="fh-visual-head"><span>Core Digital Evolution Planning Lab</span><b>Fase 0</b></div>'+
+            '<div class="fh-orbit" aria-hidden="true">'+
+              '<svg viewBox="0 0 260 260"><defs><linearGradient id="fh-orbit-gradient" x1="0" x2="1"><stop offset="0" stop-color="#ff462d"></stop><stop offset="1" stop-color="#1e7177"></stop></linearGradient></defs><circle cx="130" cy="130" r="106" fill="none" stroke="rgba(255,255,255,.14)" stroke-width="18"></circle><circle cx="130" cy="130" r="106" fill="none" stroke="url(#fh-orbit-gradient)" stroke-width="18" stroke-linecap="round" stroke-dasharray="520 665" transform="rotate(-90 130 130)"></circle><circle cx="130" cy="130" r="70" fill="none" stroke="rgba(255,255,255,.22)" stroke-width="2" stroke-dasharray="7 9"></circle><circle cx="130" cy="24" r="8" fill="#ff462d"></circle><circle cx="236" cy="130" r="8" fill="#ffb84d"></circle><circle cx="130" cy="236" r="8" fill="#48b57b"></circle><circle cx="24" cy="130" r="8" fill="#3677d8"></circle></svg>'+
+              '<div class="fh-orbit-center"><strong>S/4</strong><span>Core limpio, gobernado y preparado para IA</span></div>'+
+            '</div>'+
+            '<div class="fh-streams">'+
+              '<div class="fh-stream"><i style="--w:88%"></i><b>Procesos</b></div>'+
+              '<div class="fh-stream"><i style="--w:84%"></i><b>Datos</b></div>'+
+              '<div class="fh-stream"><i style="--w:76%"></i><b>Clean Core</b></div>'+
+              '<div class="fh-stream"><i style="--w:96%"></i><b>Roadmap</b></div>'+
+            '</div>'+
+          '</aside>'+
+        '</div>'+
+        '<div class="fh-principles" aria-label="Principios de la propuesta">'+
+          '<article class="fh-principle"><svg class="ic"><use href="#i-layers"></use></svg><div><b>Simplificar con criterio</b><small>Preservar valor y retirar complejidad innecesaria.</small></div><svg class="ic fh-go"><use href="#i-arrow"></use></svg></article>'+
+          '<article class="fh-principle"><svg class="ic"><use href="#i-split"></use></svg><div><b>Decidir con evidencia</b><small>Comparar Brownfield, Greenfield y SDT.</small></div><svg class="ic fh-go"><use href="#i-arrow"></use></svg></article>'+
+          '<article class="fh-principle"><svg class="ic"><use href="#i-wrench"></use></svg><div><b>Acelerar la ejecuci&oacute;n</b><small>Convertir hallazgos en activos reutilizables.</small></div><svg class="ic fh-go"><use href="#i-arrow"></use></svg></article>'+
+        '</div>'+
+      '</section>'+
+      '<section class="fh-summary" aria-label="Resumen ejecutivo">'+
+        '<div class="fh-summary-grid">'+
+          '<article class="fh-summary-card"><div class="fh-summary-icon"><svg class="ic"><use href="#i-split"></use></svg></div><h3>No todo se migra</h3><p>Se decide qu&eacute; preservar, modernizar, reemplazar o retirar para proteger capacidades que generan valor y eliminar complejidad innecesaria.</p></article>'+
+          '<article class="fh-summary-card"><div class="fh-summary-icon"><svg class="ic"><use href="#i-core"></use></svg></div><h3>Clean Core pragm&aacute;tico</h3><p>El an&aacute;lisis de desarrollos, add-ons e integraciones identifica qu&eacute; puede adoptar est&aacute;ndar, qu&eacute; debe modernizarse y qu&eacute; aporta diferenciaci&oacute;n.</p></article>'+
+          '<article class="fh-summary-card"><div class="fh-summary-icon"><svg class="ic"><use href="#i-blueprint"></use></svg></div><h3>Listo para ejecutar</h3><p>Roadmap, backlog, riesgos, arquitectura objetivo y modelo de gobierno se convierten en activos reutilizables para la siguiente fase.</p></article>'+
+        '</div>'+
+      '</section>'+
+      '<section class="fh-industry" aria-labelledby="fh-industry-title">'+
+        '<div class="fh-industry-head"><div><div class="fh-industry-kicker">Enfoque de industria</div><h3 id="fh-industry-title">Dise&ntilde;ado para una operaci&oacute;n de consumo masivo y bebidas.</h3></div><p>El sitio resalta que la evoluci&oacute;n S/4HANA debe proteger procesos de alta criticidad operativa: disponibilidad, facturaci&oacute;n, inventarios, planeaci&oacute;n, distribuci&oacute;n, exportaciones, maquilas, calidad y continuidad del negocio.</p></div>'+
+        '<div class="fh-value-grid">'+
+          '<div class="fh-value-card"><strong>Disponibilidad de producto</strong><span>Roadmap conectado a Fill Rate, agotados, inventario y promesa de servicio.</span></div>'+
+          '<div class="fh-value-card"><strong>Route-to-Market</strong><span>Visibilidad de Order-to-Cash, DSD, rutas, precios, descuentos y facturaci&oacute;n.</span></div>'+
+          '<div class="fh-value-card"><strong>Supply Chain resiliente</strong><span>Evaluaci&oacute;n de demanda, planeaci&oacute;n, producci&oacute;n, distribuci&oacute;n primaria y continuidad.</span></div>'+
+          '<div class="fh-value-card"><strong>Datos para decidir</strong><span>Gobierno, calidad, migraci&oacute;n selectiva, reportes y anal&iacute;tica futura.</span></div>'+
+          '<div class="fh-value-card"><strong>Clean Core con criterio</strong><span>Diferenciar deuda t&eacute;cnica de capacidades que aportan valor competitivo.</span></div>'+
+          '<div class="fh-value-card"><strong>Exportaciones y cumplimiento</strong><span>Preservar controles regulatorios, seguridad, trazabilidad e informaci&oacute;n hist&oacute;rica.</span></div>'+
+          '<div class="fh-value-card"><strong>Maquilas y terceros</strong><span>Evaluar procesos de producci&oacute;n externa, materiales, costos, calidad y mermas.</span></div>'+
+          '<div class="fh-value-card"><strong>Valor medible</strong><span>Business Case basado en KPIs, TCO, eficiencia y reducci&oacute;n de riesgo.</span></div>'+
+        '</div>'+
+      '</section>';
+    host.insertBefore(block,host.firstChild);
+    block.querySelector('[data-fh-target="lab"]').addEventListener('click',function(){navigateByLabel('El Lab');});
+    block.querySelector('[data-fh-target="metodologia"]').addEventListener('click',function(){navigateByLabel('Metodolog');});
+  }
+
+  function renumberAccelerators(){
+    var tools=document.getElementById('p-tools');
+    if(!tools)return;
+    var walker=document.createTreeWalker(tools,NodeFilter.SHOW_TEXT);
+    var nodes=[];
+    while(walker.nextNode())nodes.push(walker.currentNode);
+    nodes.forEach(function(node){node.nodeValue=node.nodeValue.replace(/\bF(1[01]|[1-9])\b/g,'$1');});
+  }
+
+  window.applyVisualUpdates=function(){
+    if(typeof previousApply==='function')previousApply();
+    createHomeUpgrade();
+    renumberAccelerators();
+  };
+})();
+</script>
+
+<style id="latest-ux-patch-styles">
+/* ===== Latest requested UX patch ===== */
+#p-tools.acc-accordion-ready .acc-h.acc-accordion-header{
+  position:relative;
+  margin:14px 0 0;
+  padding:20px 64px 20px 22px;
+  min-height:78px;
+  border:1px solid var(--line);
+  border-radius:20px;
+  background:#fff;
+  box-shadow:0 9px 24px rgba(25,20,18,.055);
+  display:flex;
+  align-items:center;
+  gap:18px;
+  cursor:pointer;
+  transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease,background .18s ease;
+  scroll-margin-top:118px;
+}
+#p-tools.acc-accordion-ready .acc-h.acc-accordion-header:hover,
+#p-tools.acc-accordion-ready .acc-h.acc-accordion-header:focus-visible{
+  transform:translateY(-2px);
+  border-color:rgba(255,70,45,.42);
+  box-shadow:0 14px 30px rgba(25,20,18,.09);
+  outline:none;
+}
+#p-tools.acc-accordion-ready .acc-h.acc-accordion-header[aria-expanded="true"]{
+  background:linear-gradient(135deg,#fff,var(--red-tint));
+  border-color:rgba(255,70,45,.45);
+}
+#p-tools.acc-accordion-ready .acc-h.acc-accordion-header .fcode{
+  width:58px;
+  height:58px;
+  flex:0 0 58px;
+  border-radius:17px;
+  background:var(--red);
+  color:#fff;
+  display:grid;
+  place-items:center;
+  padding:0;
+  font-family:Arial,Helvetica,sans-serif;
+  font-size:27px;
+  line-height:1;
+  font-weight:900;
+  letter-spacing:-.03em;
+  box-shadow:0 10px 22px rgba(255,70,45,.24);
+}
+#p-tools.acc-accordion-ready .acc-toggle-icon{
+  position:absolute;
+  right:24px;
+  top:50%;
+  width:32px;
+  height:32px;
+  margin-top:-16px;
+  border-radius:50%;
+  border:1px solid var(--line);
+  display:grid;
+  place-items:center;
+  font-size:22px;
+  font-weight:400;
+  color:#555;
+  background:#fff;
+  transition:transform .2s ease,background .2s ease,color .2s ease;
+}
+#p-tools.acc-accordion-ready .acc-h.acc-accordion-header[aria-expanded="true"] .acc-toggle-icon{
+  transform:rotate(45deg);
+  background:var(--red);
+  border-color:var(--red);
+  color:#fff;
+}
+#p-tools.acc-accordion-ready .acc-collapsible-content{
+  animation:accReveal .24s ease both;
+}
+#p-tools.acc-accordion-ready .acc-collapsible-content[hidden]{display:none!important}
+@keyframes accReveal{from{opacity:0;transform:translateY(-7px)}to{opacity:1;transform:none}}
+
+.iv-accelerators .iv-accelerator-link{
+  appearance:none;
+  border:1px solid var(--iv-line);
+  background:#fff;
+  color:#414141;
+  border-radius:999px;
+  padding:8px 11px;
+  font:800 12px/1.2 Arial,Helvetica,sans-serif;
+  cursor:pointer;
+  transition:transform .16s ease,border-color .16s ease,color .16s ease,box-shadow .16s ease;
+}
+.iv-accelerators .iv-accelerator-link:hover,
+.iv-accelerators .iv-accelerator-link:focus-visible{
+  transform:translateY(-2px);
+  border-color:var(--iv-red);
+  color:var(--iv-red);
+  box-shadow:0 7px 15px rgba(255,70,45,.12);
+  outline:none;
+}
+.iv-lab-resources{margin-top:18px}
+.iv-lab-resources>h5{font-size:16px;margin:0 0 12px;color:var(--iv-ink)}
+.iv-lab-resource-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.iv-lab-resource-card{
+  border:1px solid var(--iv-line);
+  border-radius:18px;
+  background:linear-gradient(145deg,#fff,#fbf7f5);
+  padding:15px;
+  min-height:132px;
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  box-shadow:0 8px 18px rgba(20,20,20,.045);
+}
+.iv-lab-resource-card strong{font-size:15px;line-height:1.25;color:var(--iv-ink);margin-bottom:5px}
+.iv-lab-resource-card p{font-size:13px!important;line-height:1.45!important;color:#555!important;margin:0 0 11px!important}
+.resource-action-btn{
+  margin-top:14px;background:var(--red);color:#fff;border:none;border-radius:999px;padding:11px 16px;
+  font-family:Arial,Helvetica,sans-serif;font-weight:700;font-size:12.5px;cursor:pointer;transition:.15s;
+  display:inline-flex;align-items:center;gap:8px;text-decoration:none;box-shadow:0 10px 20px rgba(255,70,45,.20)
+}
+.resource-action-btn:hover{background:var(--red-dark);color:#fff}
+.iv-lab-resource-card .resource-action-btn{margin-top:auto;justify-content:center}
+.resource-action-btn.resource-action-secondary{background:#28747b}
+.resource-action-btn.resource-action-secondary:hover{background:#17555b}
+.resource-action-btn.resource-action-dark{background:#171717}
+.resource-action-btn.resource-action-dark:hover{background:#343434}
+.tool .demo-actions .resource-action-btn{margin-top:0;min-height:42px}
+.tool .clean-field-video-btn{background:#171717}
+.tool .clean-field-video-btn:hover{background:#343434}
+@media(max-width:700px){
+  #p-tools.acc-accordion-ready .acc-h.acc-accordion-header{padding:16px 56px 16px 15px;gap:12px;min-height:68px}
+  #p-tools.acc-accordion-ready .acc-h.acc-accordion-header .fcode{width:48px;height:48px;flex-basis:48px;font-size:23px;border-radius:14px}
+  #p-tools.acc-accordion-ready .acc-toggle-icon{right:15px}
+  .iv-lab-resource-grid{grid-template-columns:1fr}
+}
+</style>
+<script id="latest-ux-patch-script">
+/* ===== Latest requested UX patch ===== */
+(function(){
+  'use strict';
+  var CLEAN_FIELD_URL='http://s7d1.scene7.com/is/content/kyndryl/clean-field';
+  var previousApply=window.applyVisualUpdates;
+
+  function normalizeText(value){
+    return (value||'').normalize ? (value||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/\s+/g,' ').trim() : (value||'').toLowerCase().replace(/\s+/g,' ').trim();
+  }
+
+  function getToolsPage(){
+    return document.getElementById('p-tools') || (document.querySelector('.acc-h') ? document.querySelector('.acc-h').closest('.page') : null);
+  }
+
+  function getAcceleratorHeaders(){
+    var tools=getToolsPage();
+    return tools ? Array.prototype.slice.call(tools.querySelectorAll('.acc-h')) : [];
+  }
+
+  function setAccordionState(header,open){
+    if(!header)return;
+    header.setAttribute('aria-expanded',open?'true':'false');
+    var nodes=header.__accContentNodes||[];
+    nodes.forEach(function(node){
+      node.hidden=!open;
+      node.setAttribute('aria-hidden',open?'false':'true');
+    });
+  }
+
+  function openAccelerator(index,shouldScroll){
+    var headers=getAcceleratorHeaders();
+    var target=headers[index-1];
+    if(!target)return;
+    headers.forEach(function(header){setAccordionState(header,header===target);});
+    if(typeof goTo==='function')goTo('p-tools');
+    if(shouldScroll!==false){
+      window.setTimeout(function(){target.scrollIntoView({behavior:'smooth',block:'start'});},150);
+    }
+  }
+  window.openAccelerator=openAccelerator;
+
+  function setupAcceleratorAccordion(){
+    var tools=getToolsPage();
+    if(!tools)return;
+    var headers=getAcceleratorHeaders();
+    if(!headers.length)return;
+    tools.classList.add('acc-accordion-ready');
+    headers.forEach(function(header,i){
+      var number=i+1;
+      header.classList.add('acc-accordion-header');
+      header.id='accelerator-'+number;
+      header.dataset.acceleratorIndex=String(number);
+      header.setAttribute('role','button');
+      header.setAttribute('tabindex','0');
+      header.setAttribute('aria-expanded','false');
+      var code=header.querySelector('.fcode');
+      if(!code){
+        code=document.createElement('span');
+        code.className='fcode';
+        header.insertBefore(code,header.firstChild);
+      }
+      code.textContent=String(number);
+      var oldIcon=header.querySelector('.acc-toggle-icon');
+      if(!oldIcon){
+        oldIcon=document.createElement('span');
+        oldIcon.className='acc-toggle-icon';
+        oldIcon.setAttribute('aria-hidden','true');
+        oldIcon.textContent='+';
+        header.appendChild(oldIcon);
+      }
+      var content=[];
+      var node=header.nextElementSibling;
+      while(node && !node.classList.contains('acc-h') && !node.classList.contains('pager')){
+        content.push(node);
+        node=node.nextElementSibling;
+      }
+      header.__accContentNodes=content;
+      content.forEach(function(item){item.classList.add('acc-collapsible-content');});
+      setAccordionState(header,false);
+    });
+  }
+
+  function removeDuplicateHomeHero(){
+    var page=document.getElementById('p-inicio');
+    var primary=document.getElementById('fh-home-upgrade');
+    if(!page)return;
+
+    /*
+      La portada nueva vive dentro de #fh-home-upgrade. La versión anterior
+      queda renderizada después de ella con las clases home-grid,
+      home-principles y home-more. Se eliminan únicamente esos bloques
+      heredados para conservar intacta la portada principal de Inicio.
+    */
+    ['.home-grid','.home-principles','.home-more'].forEach(function(selector){
+      Array.prototype.slice.call(page.querySelectorAll(selector)).forEach(function(element){
+        if(primary && primary.contains(element))return;
+        element.remove();
+      });
+    });
+  }
+
+  function findGridWithinSection(header){
+    if(!header)return null;
+    var node=header.nextElementSibling;
+    while(node && !node.classList.contains('acc-h') && !node.classList.contains('pager')){
+      if(node.classList.contains('tools-grid'))return node;
+      var nested=node.querySelector ? node.querySelector('.tools-grid') : null;
+      if(nested)return nested;
+      node=node.nextElementSibling;
+    }
+    return null;
+  }
+
+  function addAcceleratorMediaButtons(){
+    var headers=getAcceleratorHeaders();
+    var h5=headers[4];
+    var grid5=findGridWithinSection(h5);
+    if(grid5){
+      var demoButton=grid5.querySelector('[data-demo="index_demo"]');
+      var demoCard=demoButton ? demoButton.closest('.tool') : null;
+      if(demoCard && !demoCard.querySelector('.clean-field-video-btn')){
+        var actions=demoButton.closest('.demo-actions');
+        if(!actions){
+          actions=document.createElement('div');
+          actions.className='demo-actions';
+          demoButton.parentNode.insertBefore(actions,demoButton);
+          actions.appendChild(demoButton);
+        }
+        var video=document.createElement('a');
+        video.className='resource-action-btn clean-field-video-btn';
+        video.href=CLEAN_FIELD_URL;
+        video.target='_blank';
+        video.rel='noopener noreferrer';
+        video.innerHTML='<svg class="ic sm"><use href="#i-play"></use></svg>Ver video Clean Field';
+        actions.appendChild(video);
+      }
+    }
+  }
+
+  function resourceCard(kind,title,copy){
+    if(kind==='video'){
+      return '<article class="iv-lab-resource-card"><strong>'+title+'</strong><p>'+copy+'</p><a class="resource-action-btn resource-action-dark" href="'+CLEAN_FIELD_URL+'" target="_blank" rel="noopener noreferrer"><svg class="ic sm"><use href="#i-play"></use></svg>Ver video</a></article>';
+    }
+    var demo=kind==='scope'?'index_demo':'kyndryl_assessment';
+    var label=kind==='scope'?'Abrir demo de alcance':'Abrir assessment Kyndryl';
+    var secondary=kind==='assessment'?' resource-action-secondary':'';
+    return '<article class="iv-lab-resource-card"><strong>'+title+'</strong><p>'+copy+'</p><button type="button" class="resource-action-btn'+secondary+'" data-lab-demo="'+demo+'" data-lab-title="'+title+'"><svg class="ic sm"><use href="#i-chart"></use></svg>'+label+'</button></article>';
+  }
+
+  function enhanceLabDetail(){
+    var detail=document.getElementById('iv-pillar-detail');
+    var list=document.getElementById('iv-pillar-list');
+    if(!detail||!list)return;
+    var active=list.querySelector('.iv-pillar-btn.active');
+    var index=active ? Number(active.dataset.i)+1 : 1;
+    var acceleratorBox=detail.querySelector('.iv-accelerators');
+    if(acceleratorBox){
+      Array.prototype.slice.call(acceleratorBox.children).forEach(function(item){
+        if(item.classList.contains('iv-accelerator-link'))return;
+        var button=document.createElement('button');
+        button.type='button';
+        button.className='iv-accelerator-link';
+        button.dataset.labAccelerator=String(index);
+        button.setAttribute('aria-label','Ir al acelerador '+index+': '+item.textContent.trim());
+        button.textContent=item.textContent.trim();
+        item.replaceWith(button);
+      });
+    }
+    var old=detail.querySelector('.iv-lab-resources');
+    var needsResources=index===5||index===6;
+    if(old && (!needsResources || old.dataset.resourceIndex!==String(index)))old.remove();
+    if(needsResources && !detail.querySelector('.iv-lab-resources')){
+      var html='';
+      if(index===5){
+        html=resourceCard('scope','Demo interactiva de alcance','Explora la experiencia original de preparación y assessment de alcance.')+
+             resourceCard('video','Video Clean Field','Consulta el contenido audiovisual de Clean Field de Kyndryl.');
+      }else if(index===6){
+        html=resourceCard('assessment','Assessment Kyndryl','Abre el dashboard original de assessment de Kyndryl.');
+      }
+      var section=document.createElement('div');
+      section.className='iv-lab-resources';
+      section.dataset.resourceIndex=String(index);
+      section.innerHTML='<h5>Demos y recursos</h5><div class="iv-lab-resource-grid">'+html+'</div>';
+      detail.appendChild(section);
+    }
+  }
+
+  function setupLabEnhancements(){
+    var detail=document.getElementById('iv-pillar-detail');
+    if(!detail)return;
+    enhanceLabDetail();
+    if(!detail.__labObserver){
+      detail.__labObserver=new MutationObserver(function(){enhanceLabDetail();});
+      detail.__labObserver.observe(detail,{childList:true,subtree:false});
+    }
+  }
+
+  function ensurePlayIcon(){
+    var sprite=document.querySelector('svg[aria-hidden="true"]');
+    if(!sprite || document.getElementById('i-play'))return;
+    var ns='http://www.w3.org/2000/svg';
+    var symbol=document.createElementNS(ns,'symbol');
+    symbol.setAttribute('id','i-play');
+    symbol.setAttribute('viewBox','0 0 24 24');
+    var circle=document.createElementNS(ns,'circle');circle.setAttribute('cx','12');circle.setAttribute('cy','12');circle.setAttribute('r','9');
+    var path=document.createElementNS(ns,'path');path.setAttribute('d','m10 8 6 4-6 4V8z');
+    symbol.appendChild(circle);symbol.appendChild(path);sprite.appendChild(symbol);
+  }
+
+  window.applyVisualUpdates=function(){
+    if(typeof previousApply==='function')previousApply();
+    ensurePlayIcon();
+    removeDuplicateHomeHero();
+    addAcceleratorMediaButtons();
+    setupAcceleratorAccordion();
+    setupLabEnhancements();
+  };
+
+  document.addEventListener('click',function(event){
+    var accelerator=event.target.closest('[data-lab-accelerator]');
+    if(accelerator){
+      event.preventDefault();
+      openAccelerator(Number(accelerator.dataset.labAccelerator),true);
+      return;
+    }
+    var labDemo=event.target.closest('[data-lab-demo]');
+    if(labDemo){
+      event.preventDefault();
+      if(typeof openDemo==='function')openDemo(labDemo.dataset.labDemo,labDemo.dataset.labTitle||'Demo',labDemo);
+      return;
+    }
+    var header=event.target.closest('.acc-accordion-header');
+    if(header){
+      var isOpen=header.getAttribute('aria-expanded')==='true';
+      getAcceleratorHeaders().forEach(function(item){setAccordionState(item,item===header?!isOpen:false);});
+    }
+  });
+
+  document.addEventListener('keydown',function(event){
+    var header=event.target.closest ? event.target.closest('.acc-accordion-header') : null;
+    if(header && (event.key==='Enter'||event.key===' ')){
+      event.preventDefault();
+      header.click();
+    }
+  });
+})();
+</script>
+
 </body>
 </html>
