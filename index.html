@@ -953,7 +953,7 @@ document.getElementById('lu').addEventListener('keydown',function(e){if(e.key===
       '<div class="iv-stream"><span>Datos / Integraciones</span><div class="iv-stream-track"><span class="iv-stream-fill" style="--start:12%;--width:82%"></span></div></div>'+
       '<div class="iv-stream"><span>OCM</span><div class="iv-stream-track"><span class="iv-stream-fill" style="--start:4%;--width:92%"></span></div></div>'+
       '</div></div><div class="iv-phase-copy"></div></div></div>';
-    renderPhase(section,1);
+    renderPhase(section,0);
     return section;
   }
 
@@ -1533,6 +1533,83 @@ document.getElementById('lu').addEventListener('keydown',function(e){if(e.key===
       header.click();
     }
   });
+})();
+</script>
+
+<style id="result-commitment-styles">
+/* ===== Compromiso Kyndryl en la sección Resultado ===== */
+#p-resultado .result-commitment{
+  margin:48px 0 42px;
+  padding:30px 34px;
+  border-left:5px solid var(--red);
+  border-top:1px solid var(--line);
+  border-right:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+  border-radius:0 20px 20px 0;
+  background:#fff;
+  box-shadow:0 12px 30px rgba(25,20,18,.065);
+}
+#p-resultado .result-commitment h3{
+  margin:0 0 20px;
+  color:var(--black);
+  font-family:inherit;
+  font-size:16px;
+  line-height:1.35;
+  letter-spacing:0;
+  font-weight:600;
+}
+#p-resultado .result-commitment p{
+  margin:0;
+  color:#404040;
+  font-family:inherit;
+  font-size:15.5px;
+  line-height:1.68;
+  font-weight:400;
+}
+#p-resultado .result-commitment p + p{
+  margin-top:18px;
+}
+@media(max-width:720px){
+  #p-resultado .result-commitment{
+    margin:36px 0 32px;
+    padding:24px 22px;
+    border-radius:0 16px 16px 0;
+  }
+  #p-resultado .result-commitment p{
+    font-size:15px;
+  }
+}
+</style>
+<script>
+/* ===== Inserción solicitada en Resultado ===== */
+(function(){
+  var previousApply=window.applyVisualUpdates;
+
+  function addResultCommitment(){
+    var page=document.getElementById('p-resultado');
+    if(!page || document.getElementById('result-commitment'))return;
+
+    var signature=page.querySelector('.sig-card');
+    if(!signature)return;
+
+    var section=document.createElement('section');
+    section.id='result-commitment';
+    section.className='result-commitment';
+    section.setAttribute('aria-labelledby','result-commitment-title');
+    section.innerHTML=''+
+      '<h3 id="result-commitment-title">Compromiso Kyndryl: inversión compartida para asegurar el éxito</h3>'+
+      '<p>En Kyndryl creemos que una transformación de esta magnitud debe comenzar con confianza y compromiso mutuo. Por ello, queremos ofrecer a Postobón una propuesta de valor diferencial: el valor correspondiente a la Fase 0 (Assessment y Planeación de la migración a RISE with SAP) será reconocido como parte de la inversión total del proyecto.</p>'+
+      '<p>Esto significa que, si Kyndryl es seleccionado como el socio para ejecutar la implementación de la migración a RISE with SAP, el costo de la Fase 0 será descontado del valor total del proyecto de implementación.</p>'+
+      '<p>Con este esquema, Postobón puede iniciar la definición de la estrategia, la evaluación técnica y funcional, la identificación de riesgos y la construcción del roadmap con un socio experto, minimizando el riesgo de la inversión inicial y garantizando la continuidad entre la etapa de planeación y la ejecución.</p>'+
+      '<p>Más que un incentivo comercial, esta propuesta refleja la confianza que Kyndryl tiene en su capacidad para entregar una transformación exitosa y nuestro compromiso de convertirnos en un aliado estratégico de largo plazo para Postobón.</p>';
+
+    signature.parentNode.insertBefore(section,signature);
+  }
+
+  window.applyVisualUpdates=function(){
+    if(typeof previousApply==='function')previousApply();
+    addResultCommitment();
+  };
 })();
 </script>
 
