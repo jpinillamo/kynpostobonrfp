@@ -1122,7 +1122,7 @@ document.getElementById('lu').addEventListener('keydown',function(e){if(e.key===
         '</div>'+
       '</section>'+
       '<section class="fh-industry" aria-labelledby="fh-industry-title">'+
-        '<div class="fh-industry-head"><div><div class="fh-industry-kicker">Enfoque de industria</div><h3 id="fh-industry-title">Dise&ntilde;ado para una operaci&oacute;n de consumo masivo y bebidas.</h3></div><p>Entendemos que la evoluci&oacute;n S/4HANA para Postob&oacute;n debe protege los procesos de alta criticidad operativa: disponibilidad, facturaci&oacute;n, inventarios, planeaci&oacute;n, distribuci&oacute;n, exportaciones, maquilas, calidad y continuidad del negocio.</p></div>'+
+        '<div class="fh-industry-head"><div><div class="fh-industry-kicker">Enfoque de industria</div><h3 id="fh-industry-title">Dise&ntilde;ado para una operaci&oacute;n de consumo masivo y bebidas.</h3></div><p>Entendemos que la evoluci&oacute;n S/4HANA para Postob&oacute;n debe proteger los procesos de alta criticidad operativa: disponibilidad, facturaci&oacute;n, inventarios, planeaci&oacute;n, distribuci&oacute;n, exportaciones, maquilas, calidad y continuidad del negocio.</p></div>'+
         '<div class="fh-value-grid">'+
           '<div class="fh-value-card"><strong>Disponibilidad de producto</strong><span>Roadmap conectado a Fill Rate, agotados, inventario y promesa de servicio.</span></div>'+
           '<div class="fh-value-card"><strong>Route-to-Market</strong><span>Visibilidad de Order-to-Cash, DSD, rutas, precios, descuentos y facturaci&oacute;n.</span></div>'+
@@ -1651,6 +1651,137 @@ document.getElementById('lu').addEventListener('keydown',function(e){if(e.key===
   window.applyVisualUpdates=function(){
     if(typeof previousApply==='function')previousApply();
     addResultCommitment();
+  };
+})();
+</script>
+
+
+<style id="online-round-updates-styles">
+/* Ajustes finales de la version en linea */
+#p-tools .accelerator-ten-video-card{display:flex;flex-direction:column}
+#p-tools .accelerator-ten-video-card .demo-actions{margin-top:auto;padding-top:18px;align-items:flex-start}
+.iv-lab-ten-resources{margin-top:18px}
+.iv-lab-ten-resources>h5{font-size:16px;margin:0 0 12px;color:var(--iv-ink)}
+</style>
+<script id="online-round-updates">
+(function(){
+  'use strict';
+  var THIRD_VIDEO_URL='https://drive.google.com/file/d/1k1otWNhX8kohvBLelYjDYPyiDQYYdR7w/view?usp=sharing';
+  var previousApply=window.applyVisualUpdates;
+
+  function normalizeText(value){
+    value=value||'';
+    return value.normalize ? value.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/\s+/g,' ').trim() : value.toLowerCase().replace(/\s+/g,' ').trim();
+  }
+
+  function replaceTextInElement(element,from,to){
+    if(!element)return;
+    var walker=document.createTreeWalker(element,NodeFilter.SHOW_TEXT);
+    var node;
+    while((node=walker.nextNode())){
+      if(node.nodeValue && node.nodeValue.indexOf(from)!==-1){
+        node.nodeValue=node.nodeValue.replace(from,to);
+      }
+    }
+  }
+
+  function updateTeamLabels(){
+    var teamLinks=Array.prototype.slice.call(document.querySelectorAll('[data-page]')).filter(function(link){
+      return normalizeText(link.textContent)==='equipo';
+    });
+    teamLinks.forEach(function(link){replaceTextInElement(link,'Equipo','Kyndryl');});
+
+    var teamLink=teamLinks[0] || Array.prototype.slice.call(document.querySelectorAll('[data-page]')).find(function(link){
+      return normalizeText(link.textContent)==='kyndryl';
+    });
+    var teamPage=teamLink ? document.getElementById(teamLink.dataset.page) : null;
+    if(!teamPage){
+      teamPage=Array.prototype.slice.call(document.querySelectorAll('.page')).find(function(page){
+        return normalizeText(page.textContent).indexOf('un equipo probado, con credenciales verificables')!==-1;
+      });
+    }
+    if(!teamPage)return;
+
+    var subtitle=Array.prototype.slice.call(teamPage.querySelectorAll('*')).find(function(element){
+      return element.children.length===0 && normalizeText(element.textContent)==='equipo y experiencia';
+    }) || teamPage.querySelector('.eyebrow');
+    if(subtitle)subtitle.textContent='¿Por qué Kyndryl?';
+  }
+
+  function getAcceleratorHeaders(){
+    var tools=document.getElementById('p-tools') || (document.querySelector('.acc-h') ? document.querySelector('.acc-h').closest('.page') : null);
+    return tools ? Array.prototype.slice.call(tools.querySelectorAll('.acc-h')) : [];
+  }
+
+  function findGridWithinSection(header){
+    if(!header)return null;
+    var node=header.nextElementSibling;
+    while(node && !node.classList.contains('acc-h') && !node.classList.contains('pager')){
+      if(node.classList.contains('tools-grid'))return node;
+      var nested=node.querySelector ? node.querySelector('.tools-grid') : null;
+      if(nested)return nested;
+      node=node.nextElementSibling;
+    }
+    return null;
+  }
+
+  function addAcceleratorTenVideo(){
+    var header=getAcceleratorHeaders()[9];
+    var grid=findGridWithinSection(header);
+    if(!grid)return;
+    var card=grid.querySelector('.tool');
+    if(!card)return;
+    card.classList.add('accelerator-ten-video-card');
+    var button=card.querySelector('.third-video-btn');
+    if(button)button.remove();
+  }
+
+  function activeLabIndex(){
+    var list=document.getElementById('iv-pillar-list');
+    var active=list ? list.querySelector('.iv-pillar-btn.active') : null;
+    return active ? Number(active.dataset.i)+1 : 1;
+  }
+
+  function updateLabTenVideo(){
+    var detail=document.getElementById('iv-pillar-detail');
+    if(!detail)return;
+    var existing=detail.querySelector('.iv-lab-ten-resources');
+    if(activeLabIndex()!==10){
+      if(existing)existing.remove();
+      return;
+    }
+    if(existing)return;
+
+    var section=document.createElement('div');
+    section.className='iv-lab-ten-resources';
+    section.innerHTML=''+
+      '<h5>Demos y recursos</h5>'+
+      '<div class="iv-lab-resource-grid">'+
+        '<article class="iv-lab-resource-card">'+
+          '<strong>SAP BTM</strong>'+
+          '<a class="resource-action-btn resource-action-dark" href="'+THIRD_VIDEO_URL+'" target="_blank" rel="noopener noreferrer">'+
+            '<svg class="ic sm"><use href="#i-play"></use></svg>Ver video'+
+          '</a>'+
+        '</article>'+
+      '</div>';
+    detail.appendChild(section);
+  }
+
+  function setupLabTenVideo(){
+    var detail=document.getElementById('iv-pillar-detail');
+    if(!detail)return;
+    updateLabTenVideo();
+    if(!detail.__labTenObserver){
+      detail.__labTenObserver=new MutationObserver(function(){updateLabTenVideo();});
+      detail.__labTenObserver.observe(detail,{childList:true,subtree:false});
+    }
+  }
+
+  window.applyVisualUpdates=function(){
+    if(typeof previousApply==='function')previousApply();
+    updateTeamLabels();
+    addAcceleratorTenVideo();
+    setupLabTenVideo();
   };
 })();
 </script>
